@@ -12,17 +12,6 @@ let levelLoaded = false;
 
 async function tick(){
 
-    // if(!loaded){
-
-    //     if(localStorage.getItem("level") == undefined){
-    //         localStorage.setItem("level", 0);
-    //     }
-    //     level = JSON.parse(localStorage.getItem("level"));
-
-    //     loaded = true;
-    // }   
-    // updateMenu();
-
     if(!levelLoaded){
         levelLoaded = true;
 

@@ -14,51 +14,43 @@ class Tile{
             if(map[position.x][position.y] == " "){
                 this.type = 1;
             }
+            if(map[position.x][position.y] == "X"){
+                this.type = 2;
+            }
         }
-        else{
-
-        }
-
-
-        // if(map[position.x][position.y] != undefined){
-        //     if(map[position.x][position.y] == "A"){
-        //         this.type == 0;
-        //     }    
-        // }
 
     }
 
     render(){
         if(this.type == 0){
             ctx.fillStyle = `rgb(15,15,15)`;
+            ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize + 1, this.tileSize + 1);
         }
-        else{
-            ctx.fillStyle = `rgb(255, 255, 255)`;
+        else if(this.type == 1){
+            ctx.fillStyle = `rgb(255, 210, 210)`;
+            ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize + 1, this.tileSize + 1);
+        }
+        else if(this.type == 2){
+            ctx.fillStyle = `rgb(210, 210, 255)`;
+            ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize + 1, this.tileSize + 1);
 
+            ctx.fillStyle = `rgb(180, 180, 255)`;
+
+
+            if(map[this.matrixPosition.x - 1][this.matrixPosition.y] != "X"){
+                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), 10, this.tileSize + 1);
+            }
+            if(map[this.matrixPosition.x + 1][this.matrixPosition.y] != "X"){
+                ctx.fillRect(worldToScreenX(this.worldPosition.x) + this.tileSize - 10, worldToScreenY(this.worldPosition.y), 10, this.tileSize + 1);
+            }
+            if(map[this.matrixPosition.x][this.matrixPosition.y - 1] != "X"){
+                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize + 1, 10);
+            }
+            if(map[this.matrixPosition.x][this.matrixPosition.y + 1] != "X"){
+                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y) + this.tileSize - 10, this.tileSize + 1, 10);
+            }
         }
-        ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize + 1, this.tileSize + 1);
 
         // ctx.drawImage(srcTiles, this.var * 145, 0, 144, 144, worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), 144, 144)
-    }
-
-    renderSelected(){
-        ctx.fillStyle = `rgba(255, 0, 0, 0.1)`;
-        ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize, this.tileSize);
-        ctx.fillStyle = `rgba(0, 0, 255, 1)`;
-        if(this.type == 0){
-            if(world.worldMatrix[(this.matrixPosition.x - 1) * world.matrixHeight + this.matrixPosition.y].type == 1){
-                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), 6, this.tileSize);
-            }
-            if(world.worldMatrix[(this.matrixPosition.x + 1) * world.matrixHeight + this.matrixPosition.y].type == 1){
-                ctx.fillRect(worldToScreenX(this.worldPosition.x + this.tileSize - 6), worldToScreenY(this.worldPosition.y), 6, this.tileSize);
-            }
-            if(world.worldMatrix[this.matrixPosition.x * world.matrixHeight + (this.matrixPosition.y - 1)].type == 1){
-                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y), this.tileSize, 6);
-            }
-            if(world.worldMatrix[this.matrixPosition.x * world.matrixHeight + (this.matrixPosition.y + 1)].type == 1){
-                ctx.fillRect(worldToScreenX(this.worldPosition.x), worldToScreenY(this.worldPosition.y + this.tileSize - 6), this.tileSize, 6);
-            }
-        }
-
     }
 }

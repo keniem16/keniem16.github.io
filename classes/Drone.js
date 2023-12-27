@@ -93,6 +93,12 @@ class Drone{
 
         let newTile = new Vec2(Math.floor(this.position.x / world.tileSize),Math.floor(this.position.y / world.tileSize));
         
+        if(world.worldMatrix[newTile.x * world.matrixHeight + newTile.y].type == 2){
+            console.log("finish");
+            levelCompleted();
+            renderEndGui();
+        }
+
         let newVertexTiles = [
             new Vec2(Math.floor(this.vertex[0].x / world.tileSize),Math.floor(this.vertex[0].y / world.tileSize)),
             new Vec2(Math.floor(this.vertex[1].x / world.tileSize),Math.floor(this.vertex[1].y / world.tileSize)),

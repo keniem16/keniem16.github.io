@@ -40,4 +40,7 @@ function render(dt){
     ctx.fillStyle = "#595";
     ctx.fillRect(1920 - 300, 50, drone.health / 100 * 250, 50);
 
+    if(levelCompleted){
+        renderEndGui();
+    }
 }
